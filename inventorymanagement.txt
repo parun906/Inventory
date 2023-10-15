@@ -1,0 +1,46 @@
+# Task For Arun Poudel
+
+* Project Name: Inventory Management System
+
+* Project Description:
+  -> Create an Inventory Management System.
+  -> This system will help the users efficiently track and manage inventory items. 
+  -> The project will involve frontend development using Angular, backend development using .NET, and data storage in SQL Server.
+  -> This project should contain Authentication and Authorization based on 2 roles (admin and user).
+  
+
+* Technologies and Components:
+1. Angular (Frontend)
+   -> Develop a user-friendly web interface for managing inventory.
+		-> Create Pages as below
+			a. Items(list/add/update)
+			b. Stocks (list/add/update)
+   -> Implement features for adding, updating, and removing inventory items.
+   -> Implement nested components to add/update inventory items.
+   -> Implement validations.
+   -> Include search and filtering capabilities for inventory items.
+   -> Make use of ag-grid to list Inventory Items.
+   -> Use Angular services to interact with the backend API.
+   -> Add User Authentication and Authorization
+   -> Safeguard Routes based on User roles
+
+2. .NET (Backend)
+   -> Build a RESTful API using ASP.NET Core for inventory management.
+   -> Create endpoints for CRUD operations on inventory items.
+   -> Implement authentication and authorization to control access.
+   -> Develop validation and error-handling mechanisms.
+   
+3. SQL Server (Database)
+    -> Design a database schema that can store users and their roles and Inventory Items with their stocks.
+		-> Create tables as 
+			a. tbl_users(userId, fullName, username, password, role, isActive)
+			b. tbl_items(itemId, itemCode, itemName, brandName, unitOfMeasurement, purchaseRate, salesRate, isActive)
+			c. tbl_stocks(stockId, storeId, itemId, quantity, expiryDate)
+			d. tbl_stores(storeId, storeName, isActive)
+			
+			create other tables based on necessity
+			
+    -> Create a stored procedure to fetch stocks of items which should be capable to filter the stocks based in provided store.
+
+
+NOTE: You need to checkin your code in github.

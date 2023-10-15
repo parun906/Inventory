@@ -1,0 +1,13 @@
+<div style="margin-top: 10px; padding-bottom: 10px;">
+    <input [(ngModel)]="searchText" placeholder="Search for an item" />
+    <button (click)="applyFilter()">Load</button>
+</div>
+
+
+<ag-grid-angular
+style="width: 5000px; height: 500px;"
+class="ag-theme-alpine"
+[rowData]="rowData"
+[columnDefs]="columnDefs"
+[gridOptions]="gridOptions"
+></ag-grid-angular>

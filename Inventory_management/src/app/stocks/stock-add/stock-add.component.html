@@ -1,0 +1,30 @@
+<form (ngSubmit)="createStock()" style="display: flex; flex-direction: column; align-items: center; width: 70%; margin: 0 auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); background-color: #858181;">
+
+    <h2 style="color: #333;">Create Stock</h2>
+
+    <div class="form-group" style="margin: 10px 0;">
+        <label for="quantity" style="font-weight: bold; font-size: larger;">Quantity:</label>
+        <input type="number" id="quantity" name="quantity" [(ngModel)]="stock.quantity" required style="width: 100%; padding: 10px; margin: 5px 0; border: 1px solid #ccc; border-radius: 5px;">
+    </div>
+
+    <div class="form-group" style="margin: 10px 0;">
+        <label for="expiryDate" style="font-weight: bold; font-size: larger;">Expiry Date:</label>
+        <input type="date" id="expiryDate" name="expiryDate" [(ngModel)]="stock.expiryDate" required style="width: 100%; padding: 10px; margin: 5px 0; border: 1px solid #ccc; border-radius: 5px;">
+    </div>
+
+    <div class="form-group" style="margin: 10px 0;">
+        <label for="store" style="font-weight: bold; font-size: larger;">Store Name:</label>
+        <select id="store" name="store" [(ngModel)]="stock.storeId" required style="width: 100%; padding: 10px; margin: 5px 0; border: 1px solid #ccc; border-radius: 5px;">
+            <option *ngFor="let store of stores" [value]="store.storeId">{{ store.storeName }}</option>
+        </select>
+    </div>
+
+    <div class="form-group" style="margin: 10px 0;">
+        <label for="item" style="font-weight: bold; font-size: larger;">Item Name:</label>
+        <select id="item" name="item" [(ngModel)]="stock.itemId" required style="width: 100%; padding: 10px; margin: 5px 0; border: 1px solid #ccc; border-radius: 5px;">
+            <option *ngFor="let item of items" [value]="item.itemId">{{ item.itemName }}</option>
+        </select>
+    </div>
+
+    <button type="submit" style="background-color: #007bff; color: #fff; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Create Stock</button>
+</form>

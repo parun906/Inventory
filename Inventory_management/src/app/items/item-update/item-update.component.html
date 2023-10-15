@@ -1,0 +1,40 @@
+<div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+    <form (ngSubmit)="updateItem()" style="text-align: center; background-color: #f7f7f7; padding: 20px; border-radius: 10px;">
+      <div class="form-group" style="margin-bottom: 15px;">
+        <label for="itemId">Item ID</label>
+        <input type="text" id="itemId" name="itemId" [(ngModel)]="itemData.itemId" required style="padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+      </div>
+
+      <div class="form-group" style="margin-bottom: 15px;">
+        <label for="itemCode">Item Code</label>
+        <input type="text" id="itemCode" name="itemCode" [(ngModel)]="itemData.itemCode" required style="padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+      </div>
+
+      <div class="form-group" style="margin-bottom: 15px;">
+        <label for="itemName">Item Name</label>
+        <input type="text" id="itemName" name="itemName" [(ngModel)]="itemData.itemName" required style="padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+      </div>
+
+      <div class="form-group" style="margin-bottom: 15px;">
+        <label for="brandName">Brand Name</label>
+        <input type="text" id="brandName" name="brandName" [(ngModel)]="itemData.brandName" style="padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+      </div>
+
+      <div class="form-group" style="margin-bottom: 15px;">
+        <label for="unitOfMeasurement">Unit of Measurement</label>
+        <input type="text" id="unitOfMeasurement" name="unitOfMeasurement" [(ngModel)]="itemData.unitOfMeasurement" required style="padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+      </div>
+
+      <div class="form-group" style="margin-bottom: 15px;">
+        <label for="purchaseRate">Purchase Rate</label>
+        <input type="number" id="purchaseRate" name="purchaseRate" [(ngModel)]="itemData.purchaseRate" required style="padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+      </div>
+
+      <div class="form-group" style="margin-bottom: 15px;">
+        <label for="salesRate">Sales Rate</label>
+        <input type="number" id="salesRate" name="salesRate" [(ngModel)]="itemData.salesRate" required style="padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+      </div>
+
+      <button type="submit" style="padding: 10px 20px; background-color: #007BFF; color: #fff; border: none; border-radius: 5px;">Update Item</button>
+    </form>
+  </div>
