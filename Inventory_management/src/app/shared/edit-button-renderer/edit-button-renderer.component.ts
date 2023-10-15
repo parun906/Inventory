@@ -20,9 +20,9 @@ export class EditButtonRendererComponent {
     else if (this.params.data.stockId) {
       this.router.navigate(['stocks/update/', this.params.data.stockId]);
     }
-    // else if (this.params.data.storeId) {
-    //   this.router.navigate(['store/update/', this.params.data.storeId]); //later if needed use 
-    // }
+    else if (this.params.data.storeId) {
+      this.router.navigate(['store/update/', this.params.data.storeId]); //later if needed use 
+    }
     else {
       console.log("param has no data");
     }

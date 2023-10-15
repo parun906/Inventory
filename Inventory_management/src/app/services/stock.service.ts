@@ -20,6 +20,9 @@ export class StockService {
   createStocks(stock: any) {
     return this.http.post(this.apiUrl,stock);
   }
+  deleteStock(stockId: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}${stockId}`);
+  }
 
 }
 

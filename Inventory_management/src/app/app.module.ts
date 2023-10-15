@@ -22,6 +22,7 @@ import { DeleteButtonComponent } from './shared/Editbuttonrender.component';
 import { StoreComponent } from './store/store.component';
 import { StoreListComponent } from './store/store-list/store-list.component';
 import { StoreAddComponent } from './store/store-add/store-add.component';
+import { StoreUpdateComponent } from './store/store-update/store-update.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { StoreAddComponent } from './store/store-add/store-add.component';
     DeleteButtonComponent,
     StoreComponent,
     StoreListComponent,
-    StoreAddComponent
+    StoreAddComponent,
+    StoreUpdateComponent
   ],
   imports: [
     BrowserModule,

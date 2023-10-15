@@ -14,10 +14,12 @@ export class StoreService {
 
   
   getStore(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}`);
+    return this.http.get<any[]>(`${this.apiUrl}`); //get store 
   }
   addStore(storeData: any) {
     return this.http.post(this.apiUrl, storeData);
   }
-
+  deleteStore(storeId: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}${storeId}`);
+  }
 }

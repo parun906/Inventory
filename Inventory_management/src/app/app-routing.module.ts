@@ -15,6 +15,7 @@ import { StocksComponent } from './stocks/stocks.component';
 import { StoreListComponent } from './store/store-list/store-list.component';
 import { StoreAddComponent } from './store/store-add/store-add.component';
 import { StoreComponent } from './store/store.component';
+import { StoreUpdateComponent } from './store/store-update/store-update.component';
 
 const routes: Routes = [
   {
@@ -44,6 +45,7 @@ const routes: Routes = [
       { path: '', pathMatch: 'full', redirectTo: 'list' },
       { path: 'list', component: StoreListComponent },
       { path: 'add', component: StoreAddComponent },
+      { path: 'update/:id', component: StoreUpdateComponent},
     ],
   },
  
