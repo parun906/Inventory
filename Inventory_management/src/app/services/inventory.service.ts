@@ -14,10 +14,10 @@ export class InventoryService {
     return this.http.post(this.apiUrl, itemData);
   }
   updateItem(itemId: number, itemData: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}/${itemId}`, itemData);
+    return this.http.put(`${this.apiUrl}${itemId}`, itemData);
   }
 
-  removeItem(itemId: number): Observable<any> {
+  deleteItem(itemId: number): Observable<any> {
     return this.http.delete(`${this.apiUrl}${itemId}`);
   }
 

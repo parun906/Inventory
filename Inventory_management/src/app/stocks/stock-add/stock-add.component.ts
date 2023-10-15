@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Route, Router } from '@angular/router';
-import { InventoryService } from 'src/app/inventory.service';
+import { InventoryService } from 'src/app/services/inventory.service';
 import { StockService } from 'src/app/services/stock.service';
 import { StoreService } from 'src/app/services/store.service';
 

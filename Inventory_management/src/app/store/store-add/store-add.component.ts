@@ -15,7 +15,7 @@ export class StoreAddComponent {
 
     this.storeService.addStore(storeData).subscribe(response => {
       console.log('Store added successfully:', response);
-      this.router.navigate(['/items']);
+      this.router.navigate(['/store']);
     });
   }
 }

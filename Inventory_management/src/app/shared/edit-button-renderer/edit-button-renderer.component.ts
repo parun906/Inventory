@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-edit-button-renderer',
@@ -7,13 +7,25 @@ import { Router } from '@angular/router';
 })
 export class EditButtonRendererComponent {
   private params: any;
-  constructor(private router: Router){}
+  constructor(private route: ActivatedRoute, private router: Router) { }
 
   agInit(params: any): void {
     this.params = params;
   }
 
   handleEditClick(): void {
-    this.router.navigate(['items/update', this.params.data.itemId]);
+    if (this.params.data.itemId) {
+      this.router.navigate(['items/update/', this.params.data.itemId]);
+    }
+    else if (this.params.data.stockId) {
+      this.router.navigate(['stocks/update/', this.params.data.stockId]);
+    }
+    // else if (this.params.data.storeId) {
+    //   this.router.navigate(['store/update/', this.params.data.storeId]); //later if needed use 
+    // }
+    else {
+      console.log("param has no data");
+    }
+
   }
 }

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { InventoryService } from 'src/app/inventory.service';
+import { InventoryService } from 'src/app/services/inventory.service';
 import { DeleteButtonComponent } from 'src/app/shared/Editbuttonrender.component';
 import { EditButtonRendererComponent } from 'src/app/shared/edit-button-renderer/edit-button-renderer.component';
 
@@ -75,12 +75,12 @@ export class ItemListComponent {
     }
   }
   
-  onEditButtonClick(itemId: any): void {
+  // onEditButtonClick(itemId: any): void {
     
-    this.router.navigate(['/update', itemId]); 
-  }
-  onDeleteButtonClick(id: any): void {
-    this.inventoryService.removeItem(id);
-    this.router.navigate(['/items']);
-  }
+  //   this.router.navigate(['/update', itemId]); 
+  // }
+  // onDeleteButtonClick(id: any): void {
+  //   this.inventoryService.deleteItem(id);
+  //   this.router.navigate(['/items']);
+  // }
 }

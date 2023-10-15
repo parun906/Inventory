@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { InventoryService } from '../inventory.service';
+import { InventoryService } from '../services/inventory.service';
 
 @Component({
   selector: 'app-delete-button',
@@ -17,13 +17,13 @@ export class DeleteButtonComponent {
   }
 
   onDeleteClick(): void {
-    if (this.params.onClick) {
-      this.params.onClick(this.params.node.data.id);
-      this.inventoryService.removeItem(this.params.node.data.id).subscribe((response) => {
+    
+      
+      this.inventoryService.deleteItem(this.params.data.itemId).subscribe((response) => {
         if (response) {
          console.log("item deleted");
         }
       });
-    }
+    
   }
 }
