@@ -108,7 +108,7 @@ namespace InventorymanagementSystem.Controller
             _context.Items.Update(existingItem);
             _context.SaveChanges();
 
-            return NoContent(); // Return 204 No Content to indicate a successful update.
+            return NoContent(); //  No Content to indicate a successful update.
         }
 
         // DELETE: api/Inventory/5
@@ -126,6 +126,8 @@ namespace InventorymanagementSystem.Controller
 
             return NoContent(); // Return 204 No Content to indicate a successful delete.
         }
+
+        //for search button
         [HttpGet("filter-items")]
         public async Task<IActionResult> FilterItemsByName(string itemNameFilter)
         {
@@ -258,7 +260,7 @@ namespace InventorymanagementSystem.Controller
     }
     [Route("api/[controller]")]
     [ApiController]
-    public class GeneralController : ControllerBase  //controller for all
+    public class GeneralController : ControllerBase  //controller for all only testing
     {
         private readonly InventoryManagementContext _context;
 
