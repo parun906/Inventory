@@ -49,7 +49,6 @@ export class ItemListComponent {
         this.rowData = filteredItems;
       });
     } else {
-      // Handle the case when the search text is empty; you might want to load all items again
       this.loadItems();
     }
   }
