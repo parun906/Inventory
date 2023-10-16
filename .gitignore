@@ -17,3 +17,5 @@ InventorymanagementSystem/.vs/InventorymanagementSystem/v17/.suo
 *.bin
 *.dll
 *.pdb
+*.dll
+*.vsidx
