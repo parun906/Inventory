@@ -9,40 +9,27 @@ import { InventoryService } from 'src/app/services/inventory.service';
 })
 export class ItemAddComponent {
   
-  itemCode: string = "";
-  itemName: string= "";
-  brandName: string= "";
-  unitOfMeasurement: string= "";
-  purchaseRate: string= "";
-  salesRate: string= "";
-  itemData:any[]=[];
- 
+  itemForm: FormGroup;
 
-
-
-  constructor(private fb: FormBuilder,private inventoryService: InventoryService,private router:Router) {
-    
+  constructor(private fb: FormBuilder, private inventoryService: InventoryService, private router: Router) {
+    this.itemForm = this.fb.group({
+      itemCode: ['', Validators.required,Validators.pattern(/^\d+(\.\d{1,2})?$/)],
+      itemName: ['', Validators.required,Validators.pattern(/^[a-zA-Z]+$/)],
+      brandName: ['', Validators.required,Validators.pattern(/^[a-zA-Z]+$/)],
+      unitOfMeasurement: ['', Validators.required],
+      purchaseRate: ['', [Validators.required, Validators.pattern(/^\d+(\.\d{1,2})?$/)]],
+      salesRate: ['', [Validators.required, Validators.pattern(/^\d+(\.\d{1,2})?$/)]],
+    });
   }
 
-
   onSubmit() {
-   
-    const itemData = {
-      
-      itemCode: this.itemCode,
-      itemName: this.itemName,
-      brandName: this.brandName,
-      unitOfMeasurement: this.unitOfMeasurement,
-      purchaseRate: this.purchaseRate,
-      salesRate: this.salesRate
-    };
-
-    // Call the service to add the item
-    this.inventoryService.addItem(itemData).subscribe(response => {
-      console.log('Item added successfully:', response);
-      this.router.navigate(['/items']); 
-    });
-
+    if (this.itemForm.valid) {
+      const itemData = this.itemForm.value;
+      this.inventoryService.addItem(itemData).subscribe(response => {
+        console.log('Item added successfully:', response);
+        this.router.navigate(['/items']);
+      });
+    }
   }
  
 }

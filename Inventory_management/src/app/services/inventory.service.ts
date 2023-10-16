@@ -6,7 +6,7 @@ import { Observable, catchError, throwError } from 'rxjs';
   providedIn: 'root'
 })
 export class InventoryService {
-  private apiUrl = 'https://localhost:7066/api/inventory/'; 
+  private apiUrl = 'https://localhost:7066/api/Items/'; 
 
   constructor(private http: HttpClient) {}
 

@@ -20,6 +20,6 @@ export class StoreService {
     return this.http.post(this.apiUrl, storeData);
   }
   deleteStore(storeId: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}${storeId}`);
+    return this.http.delete(`${this.apiUrl}/${storeId}`);
   }
 }

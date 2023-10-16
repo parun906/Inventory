@@ -1,14 +1,24 @@
-
-
-    <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
-        <form (ngSubmit)="addStore()" style="text-align: center; background-color: #f7f7f7; padding: 20px; border-radius: 10px;">
-         
-    
-          <div class="form-group" style="margin-bottom: 15px;">
-            <label for="storeName">Store Name</label>
-            <input type="text" id="storeName" name="storeName" [(ngModel)]="storeName" required style="padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
-          </div>
-    
-          <button type="submit" style="padding: 10px 20px; background-color: #007BFF; color: #fff; border: none; border-radius: 5px;">Add Store</button>
-        </form>
+<div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+  <form [formGroup]="storeForm" (ngSubmit)="addStore()" style="text-align: center; background-color: #f7f7f7; padding: 20px; border-radius: 10px;">
+    <div class="form-group" style="margin-bottom: 15px;">
+      <label for="storeName">Store Name</label>
+      <input
+        type="text"
+        id="storeName"
+        formControlName="storeName"
+        style="padding: 10px; border: 1px solid #ccc; border-radius: 5px;"
+      />
+      <div *ngIf="storeForm.get('storeName')?.hasError('required') && storeForm.get('storeName')?.touched" class="text-danger">
+        Store Name is required.
       </div>
+    </div>
+
+    <button
+      type="submit"
+      style="padding: 10px 20px; background-color: #007BFF; color: #fff; border: none; border-radius: 5px;"
+      [disabled]="!storeForm.valid"
+    >
+      Add Store
+    </button>
+  </form>
+</div>

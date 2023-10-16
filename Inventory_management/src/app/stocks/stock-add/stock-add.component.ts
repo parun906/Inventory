@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Route, Router } from '@angular/router';
 import { InventoryService } from 'src/app/services/inventory.service';
 import { StockService } from 'src/app/services/stock.service';
@@ -9,17 +10,24 @@ import { StoreService } from 'src/app/services/store.service';
   templateUrl: './stock-add.component.html',
 })
 export class StockAddComponent {
-  stock: any = {};
+  stockForm: FormGroup; // Define the form group
   stores: any[] = [];
   items: any[] = [];
 
-  quantity: number = 0;
-  expiryDate!: Date;
-  itemId: number = 0;
-  storeId: number = 0;
-
-
-  constructor(private inventoryService: InventoryService, private storeService: StoreService, private stockService: StockService, private router: Router) { }
+  constructor(
+    private fb: FormBuilder,
+    private inventoryService: InventoryService,
+    private storeService: StoreService,
+    private stockService: StockService,
+    private router: Router
+  ) {
+    this.stockForm = this.fb.group({
+      quantity: ['', Validators.required],
+      expiryDate: ['', Validators.required],
+      storeId: ['', Validators.required],
+      itemId: ['', Validators.required],
+    });
+  }
 
   ngOnInit(): void {
     // Fetch store and item data from backend
@@ -32,16 +40,13 @@ export class StockAddComponent {
   }
 
   createStock() {
-    const stock = {
-      quantity: this.quantity,
-      expiryDate: this.expiryDate,
-      itemId: this.itemId,
-      storeId: this.storeId
-    };
-    this.stockService.createStocks(this.stock).subscribe((response) => {
-      console.log("stock added sucessfully");
-      this.router.navigate(['/stocks']);
-    });
+    if (this.stockForm.valid) {
+      const stock = this.stockForm.value;
 
+      this.stockService.createStocks(stock).subscribe((response) => {
+        console.log('Stock added successfully');
+        this.router.navigate(['/stocks']);
+      });
+    }
   }
 }

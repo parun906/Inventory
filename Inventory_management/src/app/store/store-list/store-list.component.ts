@@ -27,7 +27,7 @@ export class StoreListComponent {
   gridOptions: any = {
     components: {
       deleteButtonRenderer: DeleteButtonComponent,
-      editButtonRenderer: EditButtonRendererComponent // Use lowercase 'editButtonRenderer'
+      editButtonRenderer: EditButtonRendererComponent 
     },
   };
   constructor(

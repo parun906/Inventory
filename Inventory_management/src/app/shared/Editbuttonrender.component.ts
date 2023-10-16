@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { InventoryService } from '../services/inventory.service';
 import { StockService } from '../services/stock.service';
 import { StoreService } from '../services/store.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-delete-button',
@@ -12,7 +13,7 @@ import { StoreService } from '../services/store.service';
 })
 export class DeleteButtonComponent {
   private params: any;
-  constructor(private inventoryService: InventoryService, private stockService: StockService, private storeService: StoreService) { };
+  constructor(private inventoryService: InventoryService, private stockService: StockService, private storeService: StoreService,private router: Router) { };
 
   agInit(params: any): void {
     this.params = params;
@@ -23,6 +24,7 @@ export class DeleteButtonComponent {
       this.inventoryService.deleteItem(this.params.data.itemId).subscribe((response) => {
         if (response) {
           console.log("item deleted");
+          this.router.navigate(['/item']);
         }
       });
     }
@@ -30,14 +32,16 @@ export class DeleteButtonComponent {
       this.stockService.deleteStock(this.params.data.stockId).subscribe((response) => {
         if (response) {
           console.log("stock deleted");
+          this.router.navigate(['/stock']);
         }
       });
     }
     else if (this.params.data.storeId) {
       this.storeService.deleteStore(this.params.data.storeId).subscribe((response) => {
         if (response) {
-          console.log("stock deleted");
+          console.log("store deleted");
         }
+        this.router.navigate(['/store']);
       });
     }
     else {

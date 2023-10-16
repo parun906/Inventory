@@ -13,3 +13,7 @@ InventorymanagementSystem/.vs/InventorymanagementSystem/v17/.suo
 *.vsidx
 InventorymanagementSystem/.vs/InventorymanagementSystem/v17/.suo
 *.dll
+*.v2
+*.bin
+*.dll
+*.pdb

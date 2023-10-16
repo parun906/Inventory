@@ -1,37 +1,66 @@
-
 <div style="display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background-color: #494747;">
-
     <div class="Add-item" style="text-align: center; border: 1px solid #ccc; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); background-color: #858181; width: 70%;">
-    
-        <h2 style="color: #333;">Add Item</h2>
-        <form (ngSubmit)="onSubmit()">
-            
-            <div class="form-group" style="margin: 10px 0;">
-                <label for="itemCode" style="display: block; font-weight: bold; font-size: larger">Item Code</label>
-                <input type="test" id="itemCode" name="itemCode" [(ngModel)]="itemCode" required style="width: 80%; padding: 10px; margin: 5px 0; border: 1px solid #ccc; border-radius: 5px;">
-            </div>
-            <div class="form-group" style="margin: 10px 0;">
-                <label for="username" style="display: block; font-weight: bold; font-size: larger;">Item Name</label>
-                <input type="text" id="username" name="username" [(ngModel)]="itemName" required style="width: 80%; padding: 10px; margin: 5px 0; border: 1px solid #e2d0d0; border-radius: 5px;">
-            </div>
-            <div class="form-group" style="margin: 10px 0;">
-                <label for="username" style="display: block; font-weight: bold; font-size: larger;">Brand Name</label>
-                <input type="text" id="username" name="username" [(ngModel)]="brandName" required style="width: 80%; padding: 10px; margin: 5px 0; border: 1px solid #e2d0d0; border-radius: 5px;">
-            </div>
-            <div class="form-group" style="margin: 10px 0;">
-                <label for="username" style="display: block; font-weight: bold; font-size: larger;">Unit Of Measurement</label>
-                <input type="text" id="username" name="username" [(ngModel)]="unitOfMeasurement" required style="width: 80%; padding: 10px; margin: 5px 0; border: 1px solid #e2d0d0; border-radius: 5px;">
-            </div>
-            <div class="form-group" style="margin: 10px 0;">
-                <label for="username" style="display: block; font-weight: bold; font-size: larger;">Purchase Rate</label>
-                <input type="text" id="username" name="username" [(ngModel)]="purchaseRate" required style="width: 80%; padding: 10px; margin: 5px 0; border: 1px solid #e2d0d0; border-radius: 5px;">
-            </div>
-            <div class="form-group" style="margin: 10px 0;">
-                <label for="username" style="display: block; font-weight: bold; font-size: larger;">Sales rate</label>
-                <input type="text" id="username" name="username" [(ngModel)]="salesRate" required style="width: 80%; padding: 10px; margin: 5px 0; border: 1px solid #e2d0d0; border-radius: 5px;">
-            </div>
-            <button type="submit" style="background-color: #007bff; color: #fff; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">ADD</button>
-        </form>
+      <h2 style="color: #333;">Add Item</h2>
+      <form [formGroup]="itemForm" (ngSubmit)="onSubmit()">
+        <div class="form-group" style="margin: 10px 0;">
+          <label for="itemCode" style="display: block; font-weight: bold; font-size: larger">Item Code</label>
+          <input type="text" id="itemCode" formControlName="itemCode" required style="width: 80%; padding: 10px; margin: 5px 0; border: 1px solid #ccc; border-radius: 5px;">
+          <div *ngIf="itemForm.get('itemCode')?.hasError('required')" class="text-danger">
+            Item Code is required.
+          </div>
+          <div *ngIf="itemForm.get('itemCode')?.hasError('pattern')" class="text-danger">
+            Item Code must be a valid number.
+          </div>
+        </div>
+        <div class="form-group" style="margin: 10px 0;">
+          <label for="itemName" style="display: block; font-weight: bold; font-size: larger;">Item Name</label>
+          <input type="text" id="itemName" formControlName="itemName" required style="width: 80%; padding: 10px; margin: 5px 0; border: 1px solid #e2d0d0; border-radius: 5px;">
+          <div *ngIf="itemForm.get('itemName')?.hasError('required')" class="text-danger">
+            Item Name is required.
+          </div>
+          <div *ngIf="itemForm.get('itemName')?.hasError('pattern')" class="text-danger">
+            Item Name must contain only letters.
+          </div>
+        </div>
+        <div class="form-group" style="margin: 10px 0;">
+          <label for="brandName" style="display: block; font-weight: bold; font-size: larger;">Brand Name</label>
+          <input type="text" id="brandName" formControlName="brandName" required style="width: 80%; padding: 10px; margin: 5px 0; border: 1px solid #e2d0d0; border-radius: 5px;">
+          <div *ngIf="itemForm.get('brandName')?.hasError('required')" class="text-danger">
+            Brand Name is required.
+          </div>
+          <div *ngIf="itemForm.get('brandName')?.hasError('pattern')" class="text-danger">
+            Brand Name must contain only letters.
+          </div>
+        </div>
+        <div class="form-group" style="margin: 10px 0;">
+          <label for="unitOfMeasurement" style="display: block; font-weight: bold; font-size: larger;">Unit Of Measurement</label>
+          <input type="text" id="unitOfMeasurement" formControlName="unitOfMeasurement" required style="width: 80%; padding: 10px; margin: 5px 0; border: 1px solid #e2d0d0; border-radius: 5px;">
+          <div *ngIf="itemForm.get('unitOfMeasurement')?.hasError('required')" class="text-danger">
+            Unit Of Measurement is required.
+          </div>
+        </div>
+        <div class="form-group" style="margin: 10px 0;">
+          <label for="purchaseRate" style="display: block; font-weight: bold; font-size: larger;">Purchase Rate</label>
+          <input type="text" id="purchaseRate" formControlName="purchaseRate" required style="width: 80%; padding: 10px; margin: 5px 0; border: 1px solid #e2d0d0; border-radius: 5px;">
+          <div *ngIf="itemForm.get('purchaseRate')?.hasError('required')" class="text-danger">
+            Purchase Rate is required.
+          </div>
+          <div *ngIf="itemForm.get('purchaseRate')?.hasError('pattern')" class="text-danger">
+            Purchase Rate must be a valid number.
+          </div>
+        </div>
+        <div class="form-group" style="margin: 10px 0;">
+          <label for="salesRate" style="display: block; font-weight: bold; font-size: larger;">Sales Rate</label>
+          <input type="text" id="salesRate" formControlName="salesRate" required style="width: 80%; padding: 10px; margin: 5px 0; border: 1px solid #e2d0d0; border-radius: 5px;">
+          <div *ngIf="itemForm.get('salesRate')?.hasError('required')" class="text-danger">
+            Sales Rate is required.
+          </div>
+          <div *ngIf="itemForm.get('salesRate')?.hasError('pattern')" class="text-danger">
+            Sales Rate must be a valid number.
+          </div>
+        </div>
+        <button type="submit" style="background-color: #007bff; color: #fff; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;" [disabled]="!itemForm.valid">ADD</button>
+      </form>
     </div>
-    
   </div>
+  

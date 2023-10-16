@@ -1,6 +1,7 @@
 ﻿using InventorymanagementSystem.InventoryDbContext;
 using InventorymanagementSystem.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
 namespace InventorymanagementSystem.Controller
@@ -52,11 +53,11 @@ namespace InventorymanagementSystem.Controller
 
     [Route("api/[controller]")]
     [ApiController]
-    public class InventoryController : ControllerBase  //controller for 
+    public class ItemsController : ControllerBase  //controller for items
     {
         private readonly InventoryManagementContext _context;
 
-        public InventoryController(InventoryManagementContext context)
+        public ItemsController(InventoryManagementContext context)
         {
             _context = context;
         }
@@ -82,7 +83,7 @@ namespace InventorymanagementSystem.Controller
             return Ok();
         }
 
-        // PUT: api/Inventory/5
+       
         [HttpPut("{id}")]
         public IActionResult UpdateItem(int id, [FromBody] Item item)
         {
@@ -315,6 +316,20 @@ namespace InventorymanagementSystem.Controller
             _context.SaveChanges();
 
             return Ok();
+        }
+        [HttpDelete("{id}")]
+        public IActionResult DeleteItem(int id)
+        {
+            var store = _context.Stores.Find(id);
+            if (store == null)
+            {
+                return NotFound(); // Return 404 Not Found if the store with the specified ID doesn't exist.
+            }
+
+            _context.Stores.Remove(store);
+            _context.SaveChanges();
+
+            return NoContent(); // Return 204 No Content to indicate a successful delete.
         }
     }
 }
