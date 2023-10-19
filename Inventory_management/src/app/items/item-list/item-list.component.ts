@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { InventoryService } from 'src/app/services/inventory.service';
-import { DeleteButtonComponent } from 'src/app/shared/Editbuttonrender.component';
+import { DeleteButtonComponent } from 'src/app/shared/Deletebuttonrender.component';
 import { EditButtonRendererComponent } from 'src/app/shared/edit-button-renderer/edit-button-renderer.component';
 
 @Component({

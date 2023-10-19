@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { GridOptions } from 'ag-grid-community';
 import { EditButtonRendererComponent } from '../edit-button-renderer/edit-button-renderer.component';
-import { DeleteButtonComponent } from '../Editbuttonrender.component';
+import { DeleteButtonComponent } from '../Deletebuttonrender.component';
 
 @Component({
   selector: 'app-inventory-grid',

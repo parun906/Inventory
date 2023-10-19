@@ -1,6 +1,7 @@
 ﻿using InventorymanagementSystem.InventoryDbContext;
 using InventorymanagementSystem.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
 namespace InventorymanagementSystem.Controller
@@ -48,7 +49,7 @@ namespace InventorymanagementSystem.Controller
             return Ok();
         }
 
-        // PUT: api/Stock/
+        
         [HttpPut("{id}")]
         public IActionResult UpdateStock(int id, [FromBody] Stock stock)
         {
@@ -75,7 +76,7 @@ namespace InventorymanagementSystem.Controller
                 }
             }
 
-            return NoContent(); // Return 204 No Content on successful update.
+            return NoContent(); 
         }
 
         // DELETE: api/Stock
@@ -94,7 +95,20 @@ namespace InventorymanagementSystem.Controller
 
             return Ok(stock);
         }
+        /*[HttpGet("filter-stocks")]
+        public async Task<IActionResult> FilterItemsByName(string itemNameFilter)
+        {
+            if (string.IsNullOrEmpty(itemNameFilter))
+            {
+                return BadRequest("Item name filter is required.");
+            }
 
+            // Use FromSqlRaw to call the stored procedure and pass the parameter
+            var stocksList = _context.Stocks.FromSqlRaw("EXEC SearchStocksByItemName @p0", itemNameFilter)
+                .ToListAsync();
+
+            return Ok(stocksList);
+        }*/
         private bool StockExists(int id)
         {
             return _context.Stocks.Any(e => e.StockId == id);
@@ -102,3 +116,4 @@ namespace InventorymanagementSystem.Controller
 
     }
 }
+

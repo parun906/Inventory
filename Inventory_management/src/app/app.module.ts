@@ -18,11 +18,12 @@ import { StockListComponent } from './stocks/stock-list/stock-list.component';
 import { StockAddComponent } from './stocks/stock-add/stock-add.component';
 import { StockUpdateComponent } from './stocks/stock-update/stock-update.component';
 import { EditButtonRendererComponent } from './shared/edit-button-renderer/edit-button-renderer.component';
-import { DeleteButtonComponent } from './shared/Editbuttonrender.component';
+import { DeleteButtonComponent } from './shared/Deletebuttonrender.component';
 import { StoreComponent } from './store/store.component';
 import { StoreListComponent } from './store/store-list/store-list.component';
 import { StoreAddComponent } from './store/store-add/store-add.component';
 import { StoreUpdateComponent } from './store/store-update/store-update.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,7 @@ import { StoreUpdateComponent } from './store/store-update/store-update.componen
     ,ReactiveFormsModule
     ,AgGridModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -39,9 +39,9 @@ namespace InventorymanagementSystem
             app.UseCors("AllowLocalhost4200");
 
             app.UseHttpsRedirection();
-            app.UseAuthentication();
+           
             app.UseAuthorization();
-
+            app.UseAuthentication();
             app.UseHttpsRedirection();
             app.UseEndpoints(endpoints =>
             {

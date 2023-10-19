@@ -23,6 +23,9 @@ export class StockService {
   deleteStock(stockId: number): Observable<any> {
     return this.http.delete(`${this.apiUrl}${stockId}`);
   }
+  updateStock(stockId: number, stockData: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}${stockId}`, stockData);
+  } 
 
 }
 

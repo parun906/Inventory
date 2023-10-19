@@ -22,7 +22,6 @@ export class LoginComponent {
 
         },
         error => {
-          // Handle authentication failure (e.g., show error message)
           console.error('Authentication failed', error);
         }
       );

@@ -25,7 +25,7 @@ public class InventoryManagementContext : DbContext
     public virtual DbSet<User> Users { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlServer("Server=DESKTOP-V0NPQLO;Database=InventoryManagement;Trusted_Connection=True;Integrated Security=True;TrustServerCertificate=true;MultipleActiveResultSets=True;");
+        => optionsBuilder.UseSqlServer("Server=DESKTOP-V0NPQLO;Database=Inventorysys;Trusted_Connection=True;Integrated Security=True;TrustServerCertificate=true;MultipleActiveResultSets=True;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

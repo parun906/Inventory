@@ -13,8 +13,8 @@ export class InventoryService {
   addItem(itemData: any) {
     return this.http.post(this.apiUrl, itemData);
   }
-  updateItem(itemId: number, itemData: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}${itemId}`, itemData);
+  updateItem(itemId: number, updatedItemData: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}${itemId}`, updatedItemData);
   }
 
   deleteItem(itemId: number): Observable<any> {

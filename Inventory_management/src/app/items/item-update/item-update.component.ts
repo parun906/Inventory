@@ -9,21 +9,12 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   templateUrl: './item-update.component.html',
 })
 export class ItemUpdateComponent {
-  // itemData: any = {}; 
   
-
-  // constructor(private inventoryService: InventoryService,private router: Router,private route: ActivatedRoute) {
-    
-  // }
-
-  // updateItem() {
-    
-  //   this.inventoryService.updateItem(this.itemData.itemId, this.itemData).subscribe(response => {
-  //     console.log('Item added successfully:', response)});
-  //   this.router.navigate(["items/list"]);
-  // }
-  stockUpdateForm: FormGroup; // Define the form group
+  itemUpdateForm: FormGroup; // Define the form group
   itemData: any = {};
+  itemId: number= 0;
+  selectedItems: any;
+  items: any[]= [];
 
   constructor(
     private fb: FormBuilder,
@@ -31,27 +22,51 @@ export class ItemUpdateComponent {
     private router: Router,
     private route: ActivatedRoute
   ) {
-    this.stockUpdateForm = this.fb.group({
-      itemId: ['',Validators.required], 
-      itemCode: ['', Validators.required,Validators.pattern(/^\d+(\.\d{1,2})?$/)],
-      itemName: ['', Validators.required,Validators.pattern(/^[a-zA-Z]+$/)],
-      brandName: ['',Validators.required,Validators.pattern(/^[a-zA-Z]+$/)],
-      unitOfMeasurement: ['', Validators.required,Validators.pattern(/^[a-zA-Z]+$/)],
-      purchaseRate: ['', Validators.required,Validators.pattern(/^\d+(\.\d{1,2})?$/)],
-      salesRate: ['', Validators.required,Validators.pattern(/^\d+(\.\d{1,2})?$/)],
+    this.itemUpdateForm = this.fb.group({
+      // itemId: [''], 
+      itemCode: ['', Validators.required],
+      itemName: ['', Validators.required],
+      brandName: ['',Validators.required],
+      unitOfMeasurement: ['', Validators.required],
+      purchaseRate: ['', [Validators.required,Validators.pattern(/^\d+(\.\d{1,2})?$/)]],
+      salesRate: ['', [Validators.required,Validators.pattern(/^\d+(\.\d{1,2})?$/)]],
     });
 
    
   }
 
+  ngOnInit(): void {
+   
+   
+    const idParam = this.route.snapshot.paramMap.get('id');
+    if (idParam !== null) {
+      this.itemId = +idParam;
+    
+    this.inventoryService.getItems().subscribe((data: any) => {
+      this.items = data;
+      this.selectedItems = this.items.find(item => item.itemId === this.itemId);       
+      if (this.selectedItems) {
+        this.itemUpdateForm.patchValue({
+        //  itemId: this.itemId,
+         itemCode: this.selectedItems.itemCode,
+         itemName: this.selectedItems.itemName,
+         brandName: this.selectedItems.brandName,
+         unitOfMeasurement: this.selectedItems.unitOfMeasurement,
+         purchaseRate: this.selectedItems.purchaseRate,
+         salesRate: this.selectedItems.salesRate
+        });
+      }
+    });
+    }
+  }
  
 
   updateItem() {
-    if (this.stockUpdateForm.valid) {
-      const updatedItemData = this.stockUpdateForm.value;
+    if (this.itemUpdateForm.valid) {
+      const updatedItemData = this.itemUpdateForm.value;
 
       this.inventoryService
-        .updateItem(updatedItemData.itemId, updatedItemData)
+        .updateItem(this.itemId,updatedItemData)
         .subscribe((response) => {
           console.log('Item updated successfully:', response);
           this.router.navigate(['items/list']);

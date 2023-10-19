@@ -16,10 +16,17 @@ namespace InventorymanagementSystem.Controller
             _context = context;
         }
 
-        [HttpGet]
+       /* [HttpGet]
         public IActionResult GetAllItems() //get item list
-        {
+        {        
             List<Item> itemList = _context.Items.ToList();
+            return Ok(itemList);
+        }*/
+
+        [HttpGet]
+        public IActionResult GetAllItemsForUser()
+        {
+            List<Item> itemList = _context.Items.Where(item => item.IsActive).ToList();
             return Ok(itemList);
         }
         // POST: api/Inventory
@@ -30,7 +37,7 @@ namespace InventorymanagementSystem.Controller
             {
                 return BadRequest(); //empty form of item
             }
-
+            item.IsActive = true;
             _context.Items.Add(item);
             _context.SaveChanges();
 
@@ -58,7 +65,7 @@ namespace InventorymanagementSystem.Controller
             existingItem.UnitOfMeasurement = item.UnitOfMeasurement;
             existingItem.PurchaseRate = item.PurchaseRate;
             existingItem.SalesRate = item.SalesRate;
-            existingItem.IsActive = item.IsActive;
+            existingItem.IsActive = item.IsActive = true;
 
             _context.Items.Update(existingItem);
             _context.SaveChanges();
@@ -66,7 +73,7 @@ namespace InventorymanagementSystem.Controller
             return NoContent(); //  No Content to indicate a successful update.
         }
 
-        // DELETE: api/Inventory/5
+        
         [HttpDelete("{id}")]
         public IActionResult DeleteItem(int id)
         {
@@ -75,11 +82,13 @@ namespace InventorymanagementSystem.Controller
             {
                 return NotFound(); // Return 404 Not Found if the item with the specified ID doesn't exist.
             }
+            item.IsActive = false;
 
-            _context.Items.Remove(item);
+            
+            _context.Items.Update(item);
             _context.SaveChanges();
 
-            return NoContent(); // Return 204 No Content to indicate a successful delete.
+            return NoContent(); 
         }
 
         //for search button

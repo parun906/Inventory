@@ -1,1 +1,37 @@
-<p>wip</p>
+<form [formGroup]="stockUpdateForm" (ngSubmit)="updateStock()" style="display: flex; flex-direction: column; align-items: center; width: 70%; margin: 0 auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); background-color: #858181;">
+    <h2 style="color: #333;">update Stock</h2>
+
+    <div class="form-group" style="margin: 10px 0;">
+        <label for="quantity" style="font-weight: bold; font-size: larger;">Quantity:</label>
+        <input type="number" id="quantity" formControlName="quantity" required style="width: 100%; padding: 10px; margin: 5px 0; border: 1px solid #ccc; border-radius: 5px;" [value]="selectedStock.quantity" >
+        <div *ngIf="stockUpdateForm.get('quantity')?.hasError('required')" class="text-danger">
+            Quantity is required.
+        </div>
+    </div>
+
+    <div class="form-group" style="margin: 10px 0;">
+        <label for="expiryDate" style="font-weight: bold; font-size: larger;">Expiry Date:</label>
+        <input type="date" id="expiryDate" formControlName="expiryDate" required style="width: 100%; padding: 10px; margin: 5px 0; border: 1px solid #ccc; border-radius: 5px;" [value]="selectedStock.expiryDate">
+        <div *ngIf="stockUpdateForm.get('expiryDate')?.hasError('required')" class="text-danger">
+            Expiry Date is required.
+        </div>
+    </div>
+
+    <div class="form-group" style="margin: 10px 0;">
+        <label for="store" style="font-weight: bold; font-size: larger;">Store Name:</label>
+        <select id="store" formControlName="storeId" required style="width: 100%; padding: 10px; margin: 5px 0; border: 1px solid #ccc; border-radius: 5px;" [value]="selectedStock.storeId">
+            <option *ngFor="let store of stores" [value]="store.storeId">{{ store.storeName }}</option>
+        </select>
+        
+    </div>
+
+    <div class="form-group" style="margin: 10px 0;">
+        <label for="item" style="font-weight: bold; font-size: larger;">Item Name:</label>
+        <select id="item" formControlName="itemId" required style="width: 100%; padding: 10px; margin: 5px 0; border: 1px solid #ccc; border-radius: 5px;" [value]="selectedStock.itemId">
+            <option *ngFor="let item of items" [value]="item.itemId">{{ item.itemName }}</option>
+        </select>
+        
+    </div>
+
+    <button type="submit" style="background-color: #007bff; color: #fff; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;" >Update Stock</button>
+</form>

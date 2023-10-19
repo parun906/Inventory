@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { StockService } from 'src/app/services/stock.service';
-import { DeleteButtonComponent } from 'src/app/shared/Editbuttonrender.component';
+import { DeleteButtonComponent } from 'src/app/shared/Deletebuttonrender.component';
 import { EditButtonRendererComponent } from 'src/app/shared/edit-button-renderer/edit-button-renderer.component';
 
 @Component({
@@ -45,7 +45,6 @@ export class StockListComponent {
 
   ngOnInit() {
     this.loadItems();
-
   }
 
   loadItems() {

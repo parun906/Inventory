@@ -13,9 +13,9 @@ export class ItemAddComponent {
 
   constructor(private fb: FormBuilder, private inventoryService: InventoryService, private router: Router) {
     this.itemForm = this.fb.group({
-      itemCode: ['', Validators.required,Validators.pattern(/^\d+(\.\d{1,2})?$/)],
-      itemName: ['', Validators.required,Validators.pattern(/^[a-zA-Z]+$/)],
-      brandName: ['', Validators.required,Validators.pattern(/^[a-zA-Z]+$/)],
+      itemCode: ['', Validators.required],
+      itemName: ['', Validators.required],
+      brandName: ['', Validators.required],
       unitOfMeasurement: ['', Validators.required],
       purchaseRate: ['', [Validators.required, Validators.pattern(/^\d+(\.\d{1,2})?$/)]],
       salesRate: ['', [Validators.required, Validators.pattern(/^\d+(\.\d{1,2})?$/)]],
@@ -26,7 +26,7 @@ export class ItemAddComponent {
     if (this.itemForm.valid) {
       const itemData = this.itemForm.value;
       this.inventoryService.addItem(itemData).subscribe(response => {
-        console.log('Item added successfully:', response);
+        console.log('Item added successfully:', itemData);
         this.router.navigate(['/items']);
       });
     }

@@ -18,7 +18,7 @@ namespace InventorymanagementSystem.Controller
         [HttpGet]
         public IActionResult GetAllStore() //get store 
         {
-            List<Store> storeList = _context.Stores.ToList();
+            List<Store> storeList = _context.Stores.Where(s => s.IsActive).ToList();
             return Ok(storeList);
         }
         [HttpPost]
@@ -28,7 +28,7 @@ namespace InventorymanagementSystem.Controller
             {
                 return BadRequest(); //empty form of store
             }
-
+            store.IsActive = true;
             _context.Stores.Add(store);
             _context.SaveChanges();
 
@@ -43,10 +43,13 @@ namespace InventorymanagementSystem.Controller
                 return NotFound(); // Return 404 Not Found if the store with the specified ID doesn't exist.
             }
 
-            _context.Stores.Remove(store);
+            
+            store.IsActive = false;
+
+            _context.Stores.Update(store); 
             _context.SaveChanges();
 
-            return NoContent(); // Return 204 No Content to indicate a successful delete.
+            return NoContent(); 
         }
     }
 }
